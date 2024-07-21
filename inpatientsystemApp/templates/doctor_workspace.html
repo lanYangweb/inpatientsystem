@@ -1,0 +1,177 @@
+{% extends 'homepage.html' %}
+{% load static %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css"/>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+{% block content %}
+    <style>
+        .occupancy-panel {
+            background-color: rgba(255, 182, 193, 0.5);
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .occupancy-info {
+            font-size: 20px;
+            color: black;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            width: auto; /* Utilisation de "auto" pour laisser le formulaire s'adapter à la taille du contenu */
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #001F3F;
+            font-size: 28px;
+            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+
+        .col-md-12 {
+            text-align: center;
+            background-color: rgba(251, 252, 245, 0.8); /* 湖蓝色透明度50%的背景色 */
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+
+        #Patient_Table {
+            width: 100%;
+            margin: 20px auto;
+            background-color: rgba(173, 216, 230, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        #Patient_Table th, #Patient_Table td {
+            text-align: center; /* 字体居中显示 */
+            color: #001F3F;
+            border: 1px solid #ddd; /* Subtle border */
+            padding: 10px; /* Adjusted padding */
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        #Patient_Table tbody tr:nth-child(even) {
+            background-color: rgba(35, 91, 169, 0.35); /* 偶数行背景色 */
+        }
+
+        #Patient_Table thead {
+            background-color: rgba(255, 70, 150, 0.4); /* Pink color with 50% transparency */
+            border-radius: 8px;
+        }
+
+        #Patient_Table tbody tr:hover {
+            background-color: #e0e0e0; /* 鼠标悬停时的背景色 */
+        }
+    </style>
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-2" style="background-color: rgba(83, 178, 221, 0.62); border-radius: 10px; background-image: linear-gradient(
+                to top right,
+                rgba(0, 0, 0, 0.2),
+                rgba(0, 0, 0, 0.2) 30%,
+                rgba(0, 0, 0, 0)); height: 100vh;">
+                <nav class="menu" tabindex="0">
+                    <header class="avatar">
+                        <img src="{% static "media/images/user-doctor-solid.svg" %}"/>
+                        <h6>DOCTOR</h6>
+                        <h2>{{ request.user.first_name }}</h2>
+                    </header>
+                    <ul>
+                        <a style="color:white; text-decoration:none;font-size: 18px"
+                           href="{% url 'doctor_workspace' %}"><span>Dashboard</span></a> <br>
+                        <a style="color:white; text-decoration:none;font-size: 18px"
+                           href="{% url 'add_patient' %}"><span>Add Patient</span></a><br>
+                        <a style="color:white; text-decoration:none;font-size: 18px"
+                           href="{% url 'patients' %}"><span>My Patients</span></a><br>
+                        <a style="color:white; text-decoration:none;font-size: 18px"
+                           href="{% url 'my_operation' %}"><span>My Operation</span></a><br>
+                        <a style="color:white; text-decoration:none;font-size: 18px"
+                           href="{% url 'add_operation' %}"><span>Add Operation</span></a><br>
+                        <a style="color:white; text-decoration:none;font-size: 18px"
+                           href="{% url 'operating_room_booking' %}"><span>Operating Room Booking</span></a><br>
+                        <a style="color:white; text-decoration:none;font-size: 18px"
+                           href="{% url 'my_booking_room' %}"><span>My Booking Room</span></a><br>
+                        <a style="color:white; text-decoration:none; font-size: 18px"
+                           href="{% url 'doctor_logout' %}"><span>Logout</span></a><br>
+                    </ul>
+                </nav>
+            </div>
+
+
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="occupancy-panel">
+                            <h3 style="color: black;">Bed Occupancy</h3>
+                            <div class="occupancy-info" style="color: black;">
+                                {{ bed_occupied }}%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="occupancy-panel">
+                            <h3 style="color: black;">Operating Room Occupancy</h3>
+                            <div class="occupancy-info" style="color: black;">
+                                {{ operating_room_occupied }}%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Patients</h2>
+                        <table id="Patient_Table" class="display">
+                            <thead>
+                            <tr>
+                                <th>Bed</th>
+                                <th>Doctor</th>
+                                <th>Department</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Date of Birth</th>
+                                <th>Gender</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for patient in patients %}
+                                <tr>
+                                    <td>{{ patient.id_bed }}</td>
+                                    <td>{{ patient.id_doctor }}</td>
+                                    <td>{{ patient.patient_department }}</td>
+                                    <td>{{ patient.first_name }}</td>
+                                    <td>{{ patient.last_name }}</td>
+                                    <td>{{ patient.date_of_birth }}</td>
+                                    <td>{{ patient.gender_patient }}</td>
+
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                        <script>
+                            $(document).ready(function () {
+                                $('#Patient_Table').DataTable();
+                            });
+
+
+                        </script>
+                        {#   {% include 'my_patients.html' with patients_data=patients_data %}#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

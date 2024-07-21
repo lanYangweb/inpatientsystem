@@ -1,0 +1,42 @@
+{% load static %}
+body {
+    background-repeat: no-repeat;
+    background-size: 50%;
+    overflow-y: auto;
+}
+.info_text p{
+    margin-top: 0;
+    text-align: justify-all;
+    font-family: "Bookman Old Style", serif;
+    background-color:  rgba(200, 220, 250, 0.6) !important;
+    font-size: 20px;
+    margin-left: 50%;
+    border: #00838f;
+    padding: 7px;
+    color: black;
+    border: none;
+    border-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    max-width: 100%;
+}
+
+.info_text h1{
+    font-family: "Bookman Old Style", serif;
+    margin-top:2%;
+    text-align: justify-all;
+    border: #0dcaf0;
+    font-size: 30px;
+    margin-left: 50%;
+}
+
+.logo img {
+    height: 10%;
+    width: 10%;
+    object-fit: contain;
+    border-radius: 50%;
+    top: 0; /* Place l'image à 50% du haut de la page */
+    left: 50%; /* Place l'image à 50% de la gauche de la page */
+    margin-left: 50%;
+}

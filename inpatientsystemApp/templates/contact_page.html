@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Puget Hospital Contact</title>
+    <style>
+    body {
+        background-image:url("{% static 'media/images/doc_add_patient.webp' %}");
+        top : 0;
+        background-position: bottom left;
+    }
+</style>
+<link rel="stylesheet" type="text/css" href="{% static 'css/info_page.css' %}">
+</head>
+<body>
+    <div class="logo">
+        <a href="{% url 'homepage' %}" role="button"><img src="{% static 'media/images/lgpuget.jpg' %}" alt="Logo"></a>
+    </div>
+    <div class=info_text >
+        <h1 class = info_title > General Contact Information </h1> <br>
+        <p class=info_text>
+            For general inquiries and assistance, please feel free to contact our main office. You can reach us via phone at [Your Phone Number] or send us an email at [Your Email Address]. Our team is dedicated to providing prompt and helpful responses to any questions or concerns you may have.        </p>
+        <h1 class = info_title > Technical Support </h1> <br>
+    <p class=info_text>
+If you require technical assistance or support related to our services, our technical support team is available to help. You can contact our technical support hotline at [Technical Support Phone Number] or send an email to [Technical Support Email Address]. Our experts are ready to assist you with any technical issues or troubleshooting needs.    </p>
+        <h1 class = info_title > Media and Press Inquiries </h1> <br>
+    <p class=info_text>
+For media inquiries, press releases, or collaboration opportunities, please reach out to our media relations team. Contact us via [Media Relations Phone Number] or send an email to [Media Relations Email Address]. We value media partnerships and are happy to provide information and resources to journalists, bloggers, and other members of the press.    </p>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+{% extends 'homepage.html' %}
+{% csrf_token %}
+
+{% block content %}
+         {% load static %}
+<div class="container-fluid">
+        <div class="row">
+            <!-- Colonne gauche avec le menu -->
+
+            <div class="col-md-2" style="background-color: rgba(83, 178, 221, 0.62); border-radius: 10px; background-image: linear-gradient(
+                to top right,
+                rgba(0, 0, 0, 0.2),
+                rgba(0, 0, 0, 0.2) 30%,
+                rgba(0, 0, 0, 0)); height: 100vh;">
+                <nav class="menu" tabindex="0">
+                    <header class="avatar">
+                        <img src="{% static "media/images/clipboard-user-solid.svg" %}"/> <br>
+                        <h2>{{ request.user.first_name }}</h2>
+                    </header>
+                    <ul>
+                        <span style="left: 0 !important;color:white; text-decoration:none; font-size: 18px">ADMIN</span><br>
+                        <a style="left: 0 !important;color:white; text-decoration:none; font-size: 18px" href="{% url 'admin:index' %}"><span>Go to administration</span></a> <br>
+                        <a style="left: 0 !important;color:white; text-decoration:none; font-size: 18px" href="{% url 'admin_logout' %}"><span>Logout</span></a>
+                    </ul>
+                </nav>
+            </div>
+
+
+            <!-- Colonne du milieu avec le formulaire -->
+            <div class="col-md-10">
+                <form method="post" action="{% url 'add_user' %}" style="height:80%; width:40%">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <p>{{ message }}</p>
+                    <div class="button-container">
+                        <button type="submit" style="background-color: lightgreen; color: white;">Save</button>
+                        <button type="reset" style="background-color: rgba(83, 178, 221, 0.62); color: white;">Reset</button>
+                        <button type="button" style="background-color: red; color: white;" onclick="window.location.href='{% url 'admin_workspace' %}'">
+                            Quit
+                        </button>
+                    </div>
+
+                    <p>{{ message }}</p>
+                 </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

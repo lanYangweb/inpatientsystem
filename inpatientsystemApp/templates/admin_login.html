@@ -1,0 +1,14 @@
+{% extends 'homepage.html' %}
+
+{% csrf_token %}
+
+{% block content %}
+    <p>{{ message }}</p>
+    <form method="post" style="height:auto; width: auto; text-align : center;">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="submit" >Login
+        </button>
+    <p>{{ message }}</p>
+    </form>
+{% endblock content %}

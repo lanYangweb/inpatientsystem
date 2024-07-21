@@ -1,0 +1,93 @@
+{% extends 'homepage.html' %}
+{% load static %}
+
+<body>
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+{% block content %}
+    <style media="screen">
+        body {
+            background-image: url("{% static 'media/images/doc_bureau_vert.webp' %}") !important;
+            overflow-y: auto; /* Vertical scrollbar will appear if the content overflows */
+            background-position: top !important;
+        }
+    </style>    <!-- set calendar -->
+<div class = "login_page">
+    <div class="container" style="margin-top: 18px;">
+        <div class="row">
+            <div class="col-lg-3 ">
+                <div class="container">
+                    <div class="calendar">
+                        <div class="calendar-header">
+                            <span class="month-picker" id="month-picker"> May </span>
+                            <div class="year-picker" id="year-picker">
+            <span class="year-change" id="pre-year">
+              <pre><</pre>
+            </span>
+                                <span id="year">2020 </span>
+                                <span class="year-change" id="next-year">
+              <pre>></pre>
+            </span>
+                            </div>
+                        </div>
+
+                        <div class="calendar-body">
+                            <div class="calendar-week-days">
+                                <div>Sun</div>
+                                <div>Mon</div>
+                                <div>Tue</div>
+                                <div>Wed</div>
+                                <div>Thu</div>
+                                <div>Fri</div>
+                                <div>Sat</div>
+                            </div>
+                            <div class="calendar-days">
+                            </div>
+                        </div>
+                        <div class="calendar-footer">
+                        </div>
+                        <div class="date-time-formate">
+{#                            <div class="day-text-formate">TODAY</div>#}
+
+                            <div class="date-time-value">
+                                <div class="time-formate">02:51:20</div>
+                                <div class="date-formate">23 - july - 2022</div>
+                            </div>
+                        </div>
+
+                        <div class="month-list"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-lg-9">
+                <div class="content">
+                    <button class="home_button">
+                        <img src="{% static 'media/images/clipboard-user-solid.svg' %}" alt="admin">
+                        <a class="home_button" href="{% url 'admin_login' %}" role="button"
+                           style="text-decoration: none;">Admin login</a>
+                    </button>
+                    <button class="home_button">
+                        <img src="{% static 'media/images/user-doctor-solid.svg' %}" alt="doctor">
+                        <a class="home_button" href="{% url 'doctor_login' %}" role="button"
+                           style="text-decoration: none;">Doctor login</a>
+                    </button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+<div class="bottombar">
+    <div class="center-text-bt">
+        <p> @ Copyright Lan Yang & Mamitiana Mahitasoa </p>>
+    </div>
+</div>
+</body>
+</html>

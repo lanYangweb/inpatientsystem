@@ -1,0 +1,16 @@
+<!-- You can create a template for the discharge process if needed -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Discharge Patient</title>
+</head>
+<body>
+    <h1>Discharge Patient</h1>
+    <p>Are you sure you want to discharge {{ patient.first_name }} {{ patient.last_name }}?</p>
+    <form method="post" action="{% url 'discharge_patient' patient.id_patient %}">
+        {% csrf_token %}
+        <button type="submit">Yes, Discharge</button>
+    </form>
+    <a href="{% url 'patient_table' %}">Cancel</a>
+</body>
+</html>

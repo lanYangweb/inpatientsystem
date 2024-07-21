@@ -1,0 +1,81 @@
+{% extends 'doctor_workspace.html' %}
+<!DOCTYPE html>
+<html lang="en">
+{% csrf_token %}
+
+{% block content %}
+    {% load static %}
+    <style>
+        /* Styles CSS pour le formulaire */
+        form {
+            background-color: white;
+            padding: 20px;
+            width: auto; /* Utilisation de "auto" pour laisser le formulaire s'adapter à la taille du contenu */
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        h2 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #001F3F;
+            font-size: 28px;
+            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+
+    </style>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Colonne gauche avec le menu -->
+
+            <div class="col-md-2" style="background-color: rgba(83, 178, 221, 0.62); border-radius: 10px; background-image: linear-gradient(
+                to top right,
+                rgba(0, 0, 0, 0.2),
+                rgba(0, 0, 0, 0.2) 30%,
+                rgba(0, 0, 0, 0)); height: 100vh;">
+                <nav class="menu" tabindex="0">
+                    <header class="avatar">
+                        <img src="{% static "media/images/user-doctor-solid.svg" %}"/>
+                        <h6>DOCTOR</h6>
+                        <h2>{{ request.user.first_name }}</h2>
+                    </header>
+                    <ul>
+                        <a style="color:white; text-decoration:none;font-size: 18px"
+                           href="{% url 'doctor_workspace' %}"><span>Dashboard</span></a> <br>
+                        <a style="color:white; text-decoration:none;font-size: 18px"
+                           href="{% url 'add_patient' %}"><span>Add Patient</span></a><br>
+                        <a style="color:white; text-decoration:none;font-size: 18px"
+                           href="{% url 'patients' %}"><span>My Patients</span></a><br>
+                        <a style="color:white; text-decoration:none;font-size: 18px"
+                           href="{% url 'my_operation' %}"><span>My Operation</span></a><br>
+                        <a style="color:white; text-decoration:none;font-size: 18px"
+                           href="{% url 'add_operation' %}"><span>Add Operation</span></a><br>
+                        <a style="color:white; text-decoration:none;font-size: 18px"
+                           href="{% url 'operating_room_booking' %}"><span>Operating Room Booking</span></a><br>
+                        <a style="color:white; text-decoration:none;font-size: 18px"
+                           href="{% url 'my_booking_room' %}"><span>My Booking Room</span></a><br>
+                        <a style="color:white; text-decoration:none; font-size: 18px"
+                           href="{% url 'doctor_logout' %}"><span>Logout</span></a><br>
+                    </ul>
+                </nav>
+
+            </div>
+            <div class="col-md-8">
+                <h2>Add Operation</h2>
+                <form method="post" action="{% url 'add_operation' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="button-container">
+                        <button type="submit" style="background-color: lightgreen; color: white;">Save</button>
+                        <button type="reset" style="background-color: rgba(83, 178, 221, 0.62); color: white;">Reset</button>
+                        <button type="button" style="background-color: red; color: white;" onclick="window.location.href='{% url 'doctor_workspace' %}'">
+                            Quit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

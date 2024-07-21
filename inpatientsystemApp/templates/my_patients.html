@@ -1,0 +1,241 @@
+{% extends 'doctor_workspace.html' %}
+<!DOCTYPE html>
+<html lang="en">
+{% csrf_token %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    {#    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">#}
+    {#    <script src="{% static 'scripts/jquery.min.js' %}" defer></script>#}
+    {#    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>#}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css"/>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+
+
+    <style>
+        /* Styles CSS pour le formulaire */
+        form {
+            background-color: white;
+            padding: 20px;
+            width: auto; /* Utilisation de "auto" pour laisser le formulaire s'adapter à la taille du contenu */
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #001F3F;
+            font-size: 28px;
+            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+
+        .col-md-8 {
+            text-align: center;
+            background-color: rgba(251, 252, 245, 0.8); /* 湖蓝色透明度50%的背景色 */
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+
+        #Patient_Table {
+            width: 100%;
+            margin: 20px auto;
+            background-color: rgba(173, 216, 230, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        #Patient_Table th, #Patient_Table td {
+            text-align: center; /* 字体居中显示 */
+            color: #001F3F;
+            border: 1px solid #ddd; /* Subtle border */
+            padding: 10px; /* Adjusted padding */
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        #Patient_Table tbody tr:nth-child(even) {
+            background-color: rgba(35, 91, 169, 0.35); /* 偶数行背景色 */
+        }
+
+        #Patient_Table thead {
+            background-color: rgba(255, 70, 150, 0.4); /* Pink color with 50% transparency */
+            border-radius: 8px;
+        }
+
+        #Patient_Table tbody tr:hover {
+            background-color: #e0e0e0; /* 鼠标悬停时的背景色 */
+        }
+
+        button, input, optgroup, select, textarea {
+            margin: 0;
+            font-family: inherit;
+            font-size: 15px;
+            line-height: inherit;
+            color: black !important;
+        }
+
+        label {
+            display: inline-block;
+            color: black;
+            font-size: 15px;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+            color: black !important;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+
+            background: linear-gradient(to bottom, rgba(230, 230, 230, 0.05) 0%, rgba(0, 0, 0, 0.05) 100%);
+            font-size: 15px;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+            cursor: default;
+            color: #141313 !important;
+            border: 1px solid transparent;
+            background: transparent;
+            box-shadow: none;
+            font-size: 15px;
+        }
+
+        .dataTables_wrapper .dataTables_info {
+            clear: both;
+            float: left;
+            padding-top: 0.755em;
+            color: black !important;
+            font-size: 15px;
+        }
+
+    </style>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Colonne gauche avec le menu -->
+
+            <div class="col-md-2" style="background-color: rgba(83, 178, 221, 0.62); border-radius: 10px; background-image: linear-gradient(
+                to top right,
+                rgba(0, 0, 0, 0.2),
+                rgba(0, 0, 0, 0.2) 30%,
+                rgba(0, 0, 0, 0)); height: 100vh;">
+                <nav class="menu" tabindex="0">
+                    <header class="avatar">
+                        <img src="{% static "media/images/user-doctor-solid.svg" %}"/>
+                        <h6>DOCTOR</h6>
+                        <h2>{{ request.user.first_name }}</h2>
+                    </header>
+                    <ul>
+                        <a style="color:white; text-decoration:none;font-size: 18px"
+                           href="{% url 'doctor_workspace' %}"><span>Dashboard</span></a> <br>
+                        <a style="color:white; text-decoration:none;font-size: 18px"
+                           href="{% url 'add_patient' %}"><span>Add Patient</span></a><br>
+                        <a style="color:white; text-decoration:none;font-size: 18px"
+                           href="{% url 'patients' %}"><span>My Patients</span></a><br>
+                        <a style="color:white; text-decoration:none;font-size: 18px"
+                           href="{% url 'my_operation' %}"><span>My Operation</span></a><br>
+                        <a style="color:white; text-decoration:none;font-size: 18px"
+                           href="{% url 'add_operation' %}"><span>Add Operation</span></a><br>
+                        <a style="color:white; text-decoration:none;font-size: 18px"
+                           href="{% url 'operating_room_booking' %}"><span>Operating Room Booking</span></a><br>
+                        <a style="color:white; text-decoration:none;font-size: 18px"
+                           href="{% url 'my_booking_room' %}"><span>My Booking Room</span></a><br>
+                        <a style="color:white; text-decoration:none; font-size: 18px"
+                           href="{% url 'doctor_logout' %}"><span>Logout</span></a><br>
+                    </ul>
+                </nav>
+
+            </div>
+            <div class="col-md-8">
+                <h2>My Patients</h2>
+                <table id="Patient_Table" class="display">
+                    <thead>
+                    <tr>
+                        <th>Bed</th>
+                        <th>Doctor</th>
+                        <th>Department</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Date of Birth</th>
+                        <th>Gender</th>
+                         <th>Discharge</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for patient in patients %}
+                        <tr>
+                            <td>{{ patient.id_bed }}</td>
+                            <td>{{ patient.id_doctor }}</td>
+                            <td>{{ patient.patient_department }}</td>
+                            <td>{{ patient.first_name }}</td>
+                            <td>{{ patient.last_name }}</td>
+                            <td>{{ patient.date_of_birth }}</td>
+                            <td>{{ patient.gender_patient }}</td>
+                        <td><a href="#" class="discharge-link"
+                                           data-patient-id="{{ patient.id_patient }}"
+                                           data-first-name="{{ patient.first_name }}"
+                                           data-last-name="{{ patient.last_name }}">Discharge</a></td>
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <script>
+                    $(document).ready(function () {
+                        $('#Patient_Table').DataTable();
+                    });
+                    document.addEventListener('DOMContentLoaded', function () {
+                                // 获取所有触发出院操作的链接
+                                var dischargeLinks = document.querySelectorAll('.discharge-link');
+
+                                // 为每个链接添加点击事件处理程序
+                                dischargeLinks.forEach(function (link) {
+                                    link.addEventListener('click', function (event) {
+                                        event.preventDefault();
+                                        console.log('Link clicked!');// 添加这行以检查是否触发点击事件
+
+                                        // 获取病人 ID
+                                        var patientId = link.getAttribute('data-patient-id');
+                                        var firstName = link.getAttribute('data-first-name');
+                                        var lastName = link.getAttribute('data-last-name');
+
+                                        var confirmation = confirm('Are you sure you want to discharge ' + firstName + ' ' + lastName + '?');
+                                        console.log('Confirmation message!');
+
+                                        if (confirmation) {
+                                            // 发送 Ajax 请求触发出院操作
+                                            fetch('{% url "discharge_patient" 0 %}'.replace('0', patientId), {
+                                                method: 'GET',
+                                                headers: {
+                                                    'Content-Type': 'application/json',
+                                                    // 你可以添加其他头部，比如 CSRF Token
+                                                },
+                                            })
+                                                .then(function (response) {
+                                                    if (response.ok) {
+                                                        // 处理成功的响应，可以刷新页面或者更新表格数据
+                                                        console.log('Ajax request success!'); // 添加这行以检查是否成功处理了请求
+                                                        location.reload();
+                                                    } else {
+                                                        console.error('Failed to discharge patient');
+                                                    }
+                                                })
+                                                .catch(function (error) {
+                                                    console.error('Error:', error);
+                                                });
+                                        }
+                                    });
+                                });
+                            });
+
+
+                </script>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

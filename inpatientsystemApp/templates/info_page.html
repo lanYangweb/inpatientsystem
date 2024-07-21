@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Puget Hospital Info</title>
+    <style>
+    body {
+        background-image:url("{% static 'media/images/doc_femme_clic.webp' %}");
+        top : 0;
+        background-position: bottom left;
+    }
+</style>
+<link rel="stylesheet" type="text/css" href="{% static 'css/info_page.css' %}">
+</head>
+<body>
+    <div class="logo">
+        <a href="{% url 'homepage' %}" role="button"><img src="{% static 'media/images/lgpuget.jpg' %}" alt="Logo"></a>
+    </div>
+    <div class=info_text >
+        <h1 class = info_title > Presentation of the Establishment </h1> <br>
+        <p class=info_text>
+    Welcome to the information page dedicated to the doctors of our establishment. We are delighted to have you with us. Our medical institution is committed to providing quality care and promoting excellence in all aspects of healthcare. This page aims to keep you informed of the latest news, procedures and essential resources.
+        </p>
+        <h1 class = info_title > Missions and Objectives </h1> <br>
+    <p class=info_text>
+    As a physician at our establishment, you play a central role in achieving our mission: providing exceptional medical care to our patients. We encourage innovation, interdisciplinary collaboration and commitment to continuous improvement. Together, we pursue the common goal of raising healthcare standards.
+    </p>
+        <h1 class = info_title > Resources and Tools: </h1> <br>
+    <p class=info_text>
+    This page is designed to provide you with easy access to the resources and tools you need in your daily practice. Whether it's clinical guidelines, training, updates on internal policies or information on upcoming events, you'll find everything you need to excel in your role. Feel free to explore and use these resources to your advantage.
+    </p>
+        <h1 class = info_title > Commitment to Well-Being </h1> <br>
+    <p class=info_text>
+    We recognize the challenges you may face as a healthcare professional. Ensuring your well-being is a priority. We encourage a culture of mutual assistance and support among colleagues. Taking care of yourself is as essential as taking care of your patients. We are here to support you every step of your professional journey.
+    </p>
+    </div>
+
+</body>
+</html>

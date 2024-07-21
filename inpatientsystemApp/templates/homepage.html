@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+{% csrf_token %}
+     {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <!-- send in calendar -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style_calender.css' %}">
+    <script src="{% static 'scripts/script_calender.js' %}" defer></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <style media="screen">
+        body {
+            background-image: url("{% static 'media/images/doc_pat_infi.webp' %}");
+            overflow-y: auto; /* Vertical scrollbar will appear if the content overflows */
+        }
+
+    </style>
+</head>
+<body>
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+<div class="navbar">
+    <div class="logo">
+        <a href="{% url 'homepage' %}" role="button"><img src="{% static 'media/images/lgpuget.jpg' %}" alt="Logo"></a>
+    </div>
+    <div class="center-text">
+        Welcome to your workspace
+    </div>
+    <div class="nav-buttons">
+        <a class="nav_button" href="{% url 'login' %}" role="button">Login</a>
+        <a class="nav_button" href="{% url 'info_page' %}" role="button">Info</a>
+        <a class="nav_button" href="{% url 'contact_page' %}" role="button">Contact</a>
+    </div>
+</div>
+
+{% block content %}
+    <!-- set calendar -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Contenu pour la partie supérieure de l'écran -->
+                <div class="welcome_text">
+                    <p>Welcome, esteemed doctors of our invaluable hospital <br>
+                    It is with great pleasure that I extend a warm welcome to you on our internal website—an exclusive space dedicated to the smooth operation and continuous improvement of our medical facility.<br>
+                    Your dedication and expertise are invaluable, and this website is designed to further facilitate your mission by providing essential tools and resources. Through collaborative efforts, we aim to strengthen the efficiency of our services to deliver the best possible care.<br>
+                    I encourage you to continue your outstanding commitment to patients, providing them with compassionate support and ensuring their recovery. Additionally, remember to care for yourselves, your colleagues, and your mental well-being. A balanced medical team is essential for optimal healthcare delivery.
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="col-md-12">
+                <!-- Contenu pour la partie supérieure de l'écran -->
+            </div>
+{% endblock content %}
+<div class="bottombar">
+    <div class="center-text-bt" style="font-size: 16px">
+        <p> @ Copyright Lan Yang & Mamitiana Mahitasoa </p>>
+    </div>
+</div>
+</body>
+</html>
