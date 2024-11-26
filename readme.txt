@@ -16,9 +16,6 @@ period they can be open. Level C operating rooms are open for 8 hours a day and 
 weekends, level B operating rooms are open for 12 hours everyday. level A operating rooms are
 available 24 hours everyday.
 
-TRY WEBSITE AS ADMIN:
-https://lena.pythonanywhere.com/
-(username: go123 password: go123)
 -----------------------------------------------------------------------------------------
 ----------------------------------FOR DOCTOR USER----------------------------------------
 -----------------------------------------------------------------------------------------
@@ -54,6 +51,10 @@ Keep track of your reserved operating rooms. Click My Booking Room to view and m
 Logout:
 Logout securely from your account. Access Logout to end your session.
 
+
+TRY WEBSITE AS DOCTOR:
+https://lena.pythonanywhere.com/
+(DOCTOR LOGIN: username: go123 password: go123)
 -----------------------------------------------------------------------------------------
 --------------------------INSTRUCTION FOR LOCAL RUN--------------------------------------
 -----------------------------------------------------------------------------------------
