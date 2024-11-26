@@ -16,6 +16,9 @@ period they can be open. Level C operating rooms are open for 8 hours a day and 
 weekends, level B operating rooms are open for 12 hours everyday. level A operating rooms are
 available 24 hours everyday.
 
+TRY WEBSITE AS ADMIN:
+https://lena.pythonanywhere.com/
+(username: go123 password: go123)
 -----------------------------------------------------------------------------------------
 ----------------------------------FOR DOCTOR USER----------------------------------------
 -----------------------------------------------------------------------------------------
