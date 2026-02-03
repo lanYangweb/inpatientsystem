@@ -80,6 +80,7 @@ This system helps medical institutions and professionals better manage **inpatie
 4. Install requirements:
       ```bash
       pip install -r requirements.txt
+      ```
 5. Make database migrations:
       python manage.py makemigrations
       python manage.py migrate
@@ -96,3 +97,4 @@ This system helps medical institutions and professionals better manage **inpatie
 Calendar module: from kaizhelam https://github.com/kaizhelam/Calendar
 
 Icons: from FontAwesome  https://fontawesome.com/
+
