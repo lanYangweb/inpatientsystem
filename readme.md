@@ -8,10 +8,6 @@
     <img src="./mysystem.png" alt="Inpatient System Screenshot" width="600"/>
 </p>
 
-<h4 align="right">
-  🧑🏻‍💻 Made by [@ISDouglas](https://github.com/ISDouglas)
-</h4>
-
 ---
 
 ## 🗺️ &ensp; Project Overview
@@ -89,4 +85,5 @@ python -m venv venv
 source venv/bin/activate  # Linux/macOS
 venv\Scripts\activate     # Windows
 pip install -r requirements.txt
+
 
