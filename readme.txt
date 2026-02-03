@@ -1,84 +1,91 @@
-# 🏥 Inpatient Management System - Puget Hospital
+<h1 align="center">
+    🏥 &emsp; Welcome to Inpatient Management System &emsp; 🏨
+</h1>
 
-**Author:** Lan YANG  
-**Contact:** [jaulinexdu@gmail.com](mailto:jaulinexdu@gmail.com)  
+*A project by Lan YANG to help hospitals and medical professionals efficiently manage inpatients and surgeries 🩺*
 
----
+<p align="center">
+  <img src="https://github.com/ISDouglas/Inpatient_management_system/blob/main/demo/dashboard.gif" width="600"/>
+</p>
 
-## 👋 Hello!
-
-Welcome to the **Inpatient Management System** from Lan.  
-
-This system helps medical institutions and professionals better manage **inpatient patients** and their **surgeries**.
-
-- Patients are admitted by doctors from the corresponding department.
-- Each patient occupies a bed and may be scheduled for surgery.
-- The system provides **bed and operating room information** for inquiry, use, and reservation.
-- It also provides **statistics** such as bed occupancy and operating room occupancy.
-
-**Operating Room Levels:**
-
-| Level | Availability |
-|-------|-------------|
-| A     | 24 hours daily |
-| B     | 12 hours daily |
-| C     | 8 hours daily, closed on weekends |
+<h4 align="right">
+  🧑🏻‍💻 Made by [@ISDouglas](https://github.com/ISDouglas)
+</h4>
 
 ---
 
-## 👨‍⚕️ For Doctor Users
+## 🗺️ &ensp; Project Overview
 
-### Registration
+The **Inpatient Management System** is a web application built with **Django** (Python) to manage patient hospitalization, bed assignments, and surgical scheduling in hospitals.
 
-- Bring your **work ID** to the department office for account registration.  
-- Alternatively, send an email to the **IT department** including your work ID.
+It provides tools for doctors to:
 
-### Using the System (After Logging In)
+- Admit and manage patients
+- Schedule and track operations
+- Reserve and manage operating rooms
+- Access statistics such as bed and OR occupancy
 
-#### Dashboard
-- Access your personalized dashboard by clicking **Dashboard**.  
-- Stay updated on key metrics and activities.
+**Tech Stack:**
 
-#### Add Patient
-- Navigate to **Add Patient** to create new patient records.  
-- Fill in the required information.
-
-#### My Patients
-- View and manage your patients efficiently.  
-- Search patients by name and discharge them when needed.
-
-#### My Operation
-- Track your scheduled operations in **My Operation**.
-
-#### Add Operation
-- Schedule new operations and coordinate upcoming procedures.
-
-#### Operating Room Booking
-- Reserve operating rooms for your procedures.  
-⚠️ Scheduled time must be **on the hour**, respecting the open times of each room class.
-
-#### My Booking Room
-- View and manage your reserved operating rooms.
-
-#### Logout
-- Securely end your session via **Logout**.
-
-### Try Website as Doctor
-
-- **Website:** [https://lena.pythonanywhere.com/](https://lena.pythonanywhere.com/)  
-- **Login:**  
-  - Username: `go123`  
-  - Password: `go123`
+- **Backend:** Python, Django
+- **Frontend:** HTML5, CSS3, JavaScript
+- **Database:** SQLite (default), compatible with PostgreSQL
+- **Other:** Git, Docker (optional), WSL/Linux compatible
 
 ---
 
-## 💻 Instruction for Local Run
+## 🧩 &ensp; Features
 
-1. Download and unzip the project.  
-2. Navigate to the project root folder.  
-3. (Optional) Create a virtual environment and activate it.  
-4. Install requirements:
+### ✅ Patient Management
+
+- Add, view, edit, and discharge patients
+- Search patients by name or department
+- Associate patients with beds in hospital wards
+
+### ✅ Operation Scheduling
+
+- Add and track operations
+- Assign operating rooms based on availability
+- Respect OR opening hours:
+  - Level A: 24h/day
+  - Level B: 12h/day
+  - Level C: 8h/day, closed on weekends
+
+### ✅ Operating Room Booking
+
+- Book operating rooms for scheduled operations
+- View and manage your reserved rooms
+- Prevent conflicts and invalid booking times
+
+### ✅ Dashboard and Statistics
+
+- Personalized dashboard for each doctor
+- Real-time statistics on beds and operating room occupancy
+- Quick access to patient and operation lists
+
+### ✅ Security
+
+- User authentication for doctors
+- CSRF protection and session management
+- Role-based access for admin and doctor users
+
+---
+
+## 👷 &ensp; How to Run Locally
+
+### 📦 Requirements
+
+- Python 3.8+  
+- Django 4.1+  
+- pip for package management  
+- (Optional) Virtual environment  
+
+### 🔧 Installation
 
 ```bash
+git clone git@github.com:ISDouglas/Inpatient_management_system.git
+cd Inpatient_management_system
+python -m venv venv
+source venv/bin/activate  # Linux/macOS
+venv\Scripts\activate     # Windows
 pip install -r requirements.txt
-```
