@@ -78,23 +78,7 @@ This system helps medical institutions and professionals better manage **inpatie
 2. Navigate to the project root folder.  
 3. (Optional) Create a virtual environment and activate it.  
 4. Install requirements:
-      ```bash
-      pip install -r requirements.txt
-      ```
-5. Make database migrations:
-      python manage.py makemigrations
-      python manage.py migrate
-6. Run the application:
-      python manage.py runserver
-7. Open your browser at:
-      http://127.0.0.1:[PORT_NUMBER]/
-8. For admin panel access, create a superuser:
-      python manage.py createsuperuser
 
-
-## 📦 Copyright / Credits
-
-Calendar module: from kaizhelam https://github.com/kaizhelam/Calendar
-
-Icons: from FontAwesome  https://fontawesome.com/
-
+```bash
+pip install -r requirements.txt
+```
