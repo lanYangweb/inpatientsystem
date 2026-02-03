@@ -5,7 +5,7 @@
 *A project by Lan YANG to help hospitals and medical professionals efficiently manage inpatients and surgeries 🩺*
 
 <p align="center">
-  <img src="https://github.com/ISDouglas/Inpatient_management_system/blob/main/demo/dashboard.gif" width="600"/>
+    <img src="./mysystem.png" alt="Inpatient System Screenshot" width="600"/>
 </p>
 
 <h4 align="right">
@@ -89,3 +89,4 @@ python -m venv venv
 source venv/bin/activate  # Linux/macOS
 venv\Scripts\activate     # Windows
 pip install -r requirements.txt
+
