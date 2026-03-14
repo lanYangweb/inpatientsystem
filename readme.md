@@ -7,6 +7,12 @@
 <p align="center">
     <img src="./mysystem.png" alt="Inpatient System Screenshot" width="600"/>
 </p>
+<p align="center">
+    <img src="./MCD.png" alt="Inpatient System Screenshot 1" width="600"/>
+</p>
+<p align="center">
+    <img src="./Traduire.png" alt="Inpatient System Screenshot 2" width="600"/>
+</p>
 
 ---
 
